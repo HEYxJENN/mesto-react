@@ -2,7 +2,6 @@ import React from "react";
 
 function Card(props) {
   return (
-    // <template id="template">
     <li className="element">
       <div className="element__image-block">
         <img
@@ -21,7 +20,6 @@ function Card(props) {
         </div>
       </div>
     </li>
-    // </template>
   );
 }
 

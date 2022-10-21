@@ -1,7 +1,6 @@
 import React from "react";
 import "../index.css";
 import ApiX from "../utils/Api.js";
-import Head from "./Head.js";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
@@ -12,35 +11,40 @@ import PopupAddMark from "./MarkupAdd.js";
 import PopupAvatarMark from "./MarkupAvatar.js";
 import { useState } from "react";
 
-<Head />;
-
 function App() {
   const [isEditAvatarOpen, setEditAvatarOpen] = useState(false);
+  const [isEditProfileOpen, setEditProfileOpen] = useState(false);
+  const [isAddPlaceOpen, setAddPlaceOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState("");
+
   const handleEditAvatarClick = () => {
     setEditAvatarOpen(!isEditAvatarOpen);
   };
 
-  const [isEditProfileOpen, setEditProfileOpen] = useState(false);
   const handleEditProfileClick = () => {
     setEditProfileOpen(!isEditProfileOpen);
   };
 
-  const [isAddPlaceOpen, setAddPlaceOpen] = useState(false);
   const handleAddPlaceClick = () => {
     setAddPlaceOpen(!isAddPlaceOpen);
   };
 
-  const [selectedCard, setSelectedCard] = useState(null);
   const handleSelectedCardClick = (card) => {
-    console.log(card.target.src);
-    setSelectedCard(card.target.src);
+    // console.log(card.target.src);
+    // setSelectedCard(card.target.src);
+    console.log(card.target);
+    const crt = card.target;
+    console.log(crt.alt);
+    console.log(crt.src);
+
+    setSelectedCard(crt);
   };
 
   const closeAllPopups = () => {
     setEditProfileOpen(false);
     setAddPlaceOpen(false);
     setEditAvatarOpen(false);
-    setSelectedCard(null);
+    setSelectedCard("");
   };
 
   return (

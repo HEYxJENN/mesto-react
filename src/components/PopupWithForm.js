@@ -5,6 +5,7 @@ function PopupWithForm(props) {
   const content = `${
     props.id === "popup__avatar" ? "popup__content-small" : "popup__content"
   } `;
+  const buttonText = `${props.id === "popup__add" ? "Создать" : ""}`;
 
   React.useEffect(() => {
     const handleEscPress = (e) => {
@@ -39,7 +40,7 @@ function PopupWithForm(props) {
               type="submit"
               id="sure__edit_button"
             >
-              Сохранить
+              {buttonText || "Сохранить"}
             </button>
           </fieldset>
         </form>
@@ -47,6 +48,8 @@ function PopupWithForm(props) {
     </div>
   );
 }
+
+export default PopupWithForm;
 
 // <div class="popup" id="popup__areusure">
 //   <div class="popup__content-verysmall">
@@ -66,5 +69,3 @@ function PopupWithForm(props) {
 //     </form>
 //   </div>
 // </div> */
-
-export default PopupWithForm;

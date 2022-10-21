@@ -6,7 +6,11 @@ function ImagePopup(props) {
   return (
     <div className={classyName} id="zoomImg" onClick={props.onClose}>
       <div className="popup__zoomimg-box">
-        <img className="popup__zoomimg" src={props.card} alt=" " />
+        <img
+          className="popup__zoomimg"
+          src={props.card.src}
+          alt={props.card.alt}
+        />
         <button
           type="button"
           className="popup__close"

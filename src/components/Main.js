@@ -19,7 +19,7 @@ function Main(props) {
         setCards(itemsApi);
       }
     );
-  });
+  }, []);
 
   return (
     <main className="content">
