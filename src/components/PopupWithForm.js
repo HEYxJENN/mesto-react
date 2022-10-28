@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function PopupWithForm(props) {
   const classyName = `popup ${props.isOpen ? "popup_opened" : ""}`;
@@ -19,7 +20,7 @@ function PopupWithForm(props) {
   }, [props.isOpen, props.onClose]);
 
   return (
-    <div className={classyName} id={props.id} onClick={props.onClose}>
+    <div className={classyName} id={props.id}>
       <div className={content}>
         <button
           type="button"
@@ -32,6 +33,7 @@ function PopupWithForm(props) {
           id="form__edit"
           name="form-edit"
           noValidate
+          onSubmit={props.onSubmit}
         >
           <fieldset className="popup__forms-fieldset">
             {props.children}
