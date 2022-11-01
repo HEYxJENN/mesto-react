@@ -23,7 +23,7 @@ function Main({
           <img
             className="profile__image"
             src={currentUser.avatar}
-            alt="фото Жака Ива Кусто"
+            alt={`аватар пользователя ${currentUser.name}`}
             onClick={onEditAvatar}
           />
         </div>

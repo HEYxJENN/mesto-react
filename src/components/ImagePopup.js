@@ -1,7 +1,9 @@
 import React from "react";
 
 function ImagePopup(props) {
-  const classyName = `popup popup_zoomed ${props.isOpen ? "popup_opened" : ""}`;
+  const classyName = `popup popup_zoomed ${
+    props.isOpen && props.card.link !== "" ? "popup_opened" : ""
+  }`;
 
   return (
     <div className={classyName} id="zoomImg" onClick={props.onClose}>

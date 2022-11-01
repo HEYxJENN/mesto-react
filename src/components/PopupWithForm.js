@@ -4,7 +4,9 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function PopupWithForm(props) {
   const classyName = `popup ${props.isOpen ? "popup_opened" : ""}`;
   const content = `${
-    props.id === "popup__avatar" ? "popup__content-small" : "popup__content"
+    `popup__${props.id}` === "popup__avatar"
+      ? "popup__content-small"
+      : "popup__content"
   } `;
   const buttonText = `${props.id === "popup__add" ? "Создать" : ""}`;
 
@@ -27,11 +29,11 @@ function PopupWithForm(props) {
           className="popup__close"
           onClick={props.onClose}
         ></button>
-        <h2 className="popup__edit">{props.title}</h2>
+        <h2 className="popup__blanc">{props.title}</h2>
         <form
           className="popup__forms"
-          id="form__edit"
-          name="form-edit"
+          id={`form__${props.id}`}
+          name={`form-${props.id}`}
           noValidate
           onSubmit={props.onSubmit}
         >

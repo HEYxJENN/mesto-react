@@ -10,7 +10,7 @@ export function EditProfile(props) {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, props.isOpen]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -27,7 +27,7 @@ export function EditProfile(props) {
       name: name,
       about: description,
     });
-    props.onClose();
+    // props.onClose();
   };
 
   return (
@@ -36,6 +36,7 @@ export function EditProfile(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
       title={props.title}
+      id="edit"
     >
       <>
         <label>

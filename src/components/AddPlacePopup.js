@@ -13,7 +13,9 @@ function AddPlace(props) {
     console.log(name);
     console.log(link);
     props.onUpdate({ name, link });
-    props.onClose();
+    setName("");
+    setLink("");
+    // props.onClose();
   };
 
   const handlePlaceLink = (e) => {
@@ -29,6 +31,7 @@ function AddPlace(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
       title={props.title}
+      id="add"
     >
       <>
         <label>
@@ -42,6 +45,7 @@ function AddPlace(props) {
             minLength="2"
             maxLength="30"
             onChange={handlePlaceName}
+            value={name}
           />
           <span className="popup__forms-input-error enterplacename-error"></span>
         </label>
@@ -54,6 +58,7 @@ function AddPlace(props) {
             id="enterlink"
             required
             onChange={handlePlaceLink}
+            value={link}
           />
           <span className="popup__forms-input-error enterlink-error"></span>
         </label>

@@ -15,7 +15,7 @@ function App() {
   const [isEditAvatarOpen, setEditAvatarOpen] = useState(false);
   const [isEditProfileOpen, setEditProfileOpen] = useState(false);
   const [isAddPlaceOpen, setAddPlaceOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState("");
+  const [selectedCard, setSelectedCard] = useState({ name: "", link: "" });
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
 
@@ -41,30 +41,38 @@ function App() {
     setEditProfileOpen(false);
     setAddPlaceOpen(false);
     setEditAvatarOpen(false);
-    setSelectedCard("");
+    setSelectedCard({ name: "", link: "" });
   };
 
   const onUpdateUser = ({ name, about }) => {
-    ApiX.setUser({ name, about });
-    ApiX.getUser().then((res) => {
-      setCurrentUser(res);
-    });
+    ApiX.setUser({ name, about }).catch((err) => console.log(err));
+
+    ApiX.getUser()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .then(closeAllPopups)
+      .catch((err) => console.log(err));
   };
 
   const onUpdateAvatar = ({ avatar }) => {
     ApiX.setUserAvatar({ avatar });
-    console.log(currentUser);
-    ApiX.getUser().then((res) => {
-      setCurrentUser(res);
-    });
+    ApiX.getUser()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .then(closeAllPopups)
+      .catch((err) => console.log(err));
   };
 
   const onAddPlace = ({ name, link }) => {
-    let likes = [];
-    let newCard = { name, link, likes };
+    const likes = [];
+    // const newCard = { name, link, likes };
     ApiX.addCard({ name, link })
       .then(ApiX.getInitialCards())
-      .then((res) => setCards([res, ...cards]));
+      .then((res) => setCards([res, ...cards]))
+      .then(closeAllPopups)
+      .catch((err) => console.log(err));
   };
 
   React.useEffect(() => {
@@ -73,15 +81,21 @@ function App() {
         setCurrentUser(userData);
         setCards(itemsApi);
       })
+      .then(closeAllPopups)
       .catch((err) => console.log(err));
   }, []);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((item) => item._id === currentUser._id);
-    ApiX.changeLikeStatus(card._id, !isLiked).then((newCard) => {
-      console.log(newCard);
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    ApiX.changeLikeStatus(card._id, !isLiked)
+      .then((newCard) => {
+        console.log(newCard);
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .then(closeAllPopups)
+      .catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {

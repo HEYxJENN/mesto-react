@@ -11,7 +11,8 @@ function EditAvatar(props) {
     props.onUpdate({
       avatar: avatar,
     });
-    props.onClose();
+    setAvatar("");
+    // props.onClose();
   };
 
   const handleAvatarChange = (e) => {
@@ -24,6 +25,7 @@ function EditAvatar(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
       title={props.title}
+      id="avatar"
     >
       <>
         <label>
@@ -35,6 +37,7 @@ function EditAvatar(props) {
             id="enterlinkAv"
             required
             onChange={handleAvatarChange}
+            value={avatar}
           />
           <span className="popup__forms-input-error enterlinkAv-error"></span>
         </label>
