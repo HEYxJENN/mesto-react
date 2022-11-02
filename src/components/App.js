@@ -32,7 +32,6 @@ function App() {
   };
 
   const handleSelectedCardClick = (card) => {
-    console.log(card.target);
     const crt = card.target;
     setSelectedCard(crt);
   };
@@ -45,9 +44,8 @@ function App() {
   };
 
   const onUpdateUser = ({ name, about }) => {
-    ApiX.setUser({ name, about }).catch((err) => console.log(err));
-
-    ApiX.getUser()
+    ApiX.setUser({ name, about })
+      .then(ApiX.getUser())
       .then((res) => {
         setCurrentUser(res);
       })
@@ -56,8 +54,8 @@ function App() {
   };
 
   const onUpdateAvatar = ({ avatar }) => {
-    ApiX.setUserAvatar({ avatar });
-    ApiX.getUser()
+    ApiX.setUserAvatar({ avatar })
+      .then(ApiX.getUser())
       .then((res) => {
         setCurrentUser(res);
       })
@@ -67,7 +65,6 @@ function App() {
 
   const onAddPlace = ({ name, link }) => {
     const likes = [];
-    // const newCard = { name, link, likes };
     ApiX.addCard({ name, link })
       .then(ApiX.getInitialCards())
       .then((res) => setCards([res, ...cards]))
@@ -89,7 +86,6 @@ function App() {
     const isLiked = card.likes.some((item) => item._id === currentUser._id);
     ApiX.changeLikeStatus(card._id, !isLiked)
       .then((newCard) => {
-        console.log(newCard);
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
@@ -99,10 +95,10 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    ApiX.removeCard(card._id);
     const newArr = cards.filter((el) => el !== card);
-    console.log(newArr);
-    setCards(newArr);
+    ApiX.removeCard(card._id)
+      .then(setCards(newArr))
+      .catch((err) => console.log(err));
   }
 
   return (
