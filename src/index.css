@@ -5,6 +5,7 @@
 @import url("./blocks/page/page.css");
 
 @import url("./blocks/header/header.css");
+@import url("./blocks/header/__sign/header__sign.css");
 @import url("./blocks/logo/logo.css");
 
 @import url("./blocks/profile/profile.css");
@@ -55,5 +56,23 @@
 
 @import url("./blocks/popup/popup__forms-input-error/popup__forms-input-error.css");
 @import url("./blocks/popup/popup__forms-input-error/popup__forms-input-error_active.css");
+
+
+@import url("./blocks/registration/registration.css");
+@import url("./blocks/registration/__header/registration__header.css");
+@import url("./blocks/registration/__confirm/registration__confirm.css");
+@import url("./blocks/registration/__already/registration__already.css");
+@import url("./blocks/registration/__form/registration__form.css");
+@import url("./blocks/registration/__input/registration__input.css");
+
+
+
+
+
+
+
+
+
+
 
 

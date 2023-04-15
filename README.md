@@ -1,25 +1,17 @@
-# Место
+# Movies
 
 ---
 
-### проект на яндекс практикум:
+### Дипломный проект на яндекс практикум:
 
-https://heyxjenn.github.io/mesto-react/
-
-#### Основное упор на:
-
-- Использование React
-- Оптимизация кода
-
----
-
-### Дальнейший план :
-
-- Добавление новых карточек
-- Доработка системы лайков
-- Удаление карточек
+https://heyxjenn.github.io/
 
 ---
 
 'npm build' for build
 'npm start' for run
+
+---
+
+макет :
+https://disk.yandex.ru/d/UlnQQeU88pPnaA
